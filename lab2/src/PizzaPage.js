@@ -24,7 +24,7 @@ function PizzaPage() {
     {
       name: 'Mushroom Pizza',
       price: '$25.00',
-      tag: 'null',
+      tag: 'SALE',
       image: menu2,
     },
     {
