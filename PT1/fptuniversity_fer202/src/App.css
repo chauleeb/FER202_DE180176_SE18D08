@@ -1,0 +1,59 @@
+.App {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.laptop-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.laptop-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+/* Responsive layout for laptop cards */
+@media (max-width: 1200px) {
+  .card {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 0 15px;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    min-height: 280px;
+  }
+}
