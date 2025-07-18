@@ -1,0 +1,269 @@
+/* App.css - Giao diện dễ nhìn */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Product List Styles */
+.product-list {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  border: 1px solid #e0e0e0;
+}
+
+.product-list h2 {
+  color: #34495e;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.product-item:hover {
+  background: #f0f8ff;
+  border-color: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-item div:first-child {
+  flex: 1;
+}
+
+.product-item p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.product-item p:first-child {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.product-item p:nth-child(3) {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.product-item div:last-child {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Button Colors */
+button:nth-child(1) {
+  background: #27ae60;
+  color: white;
+}
+
+button:nth-child(1):hover {
+  background: #219a52;
+}
+
+button:nth-child(2) {
+  background: #f39c12;
+  color: white;
+}
+
+button:nth-child(2):hover {
+  background: #e67e22;
+}
+
+button:nth-child(3) {
+  background: #e74c3c;
+  color: white;
+}
+
+button:nth-child(3):hover {
+  background: #c0392b;
+}
+
+/* Cart Styles */
+.cart {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border: 1px solid #e0e0e0;
+}
+
+.cart h2 {
+  color: #34495e;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e74c3c;
+}
+
+.cart p {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  padding: 30px 0;
+  font-style: italic;
+}
+
+.cart ul {
+  list-style: none;
+}
+
+.cart li {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.cart li:hover {
+  background: #e3f2fd;
+  border-color: #3498db;
+  transform: translateX(5px);
+}
+
+.cart li p {
+  margin: 5px 0;
+  text-align: left;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.cart li p:first-child {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.05rem;
+}
+
+.cart li p:nth-child(2) {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+  }
+  
+  .App h1 {
+    font-size: 1.8rem;
+  }
+  
+  .product-item {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .product-item div:last-child {
+    justify-content: center;
+  }
+  
+  button {
+    flex: 1;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-item div:last-child {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  button {
+    max-width: 100%;
+  }
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart li {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Enhanced visual feedback */
+.product-item:active {
+  transform: translateY(0);
+}
+
+/* Better spacing and readability */
+.product-item p {
+  line-height: 1.4;
+}
+
+.cart li p {
+  line-height: 1.4;
+}
