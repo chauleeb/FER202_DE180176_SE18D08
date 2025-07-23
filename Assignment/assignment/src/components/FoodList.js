@@ -1,8 +1,21 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/cartSlice';
 
 const FoodList = ({ foods }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (food) => {
+    dispatch(addToCart({
+      id: food.id,
+      name: food.name,
+      price: parseFloat(food.currentPrice) || 0,
+      image: food.image,
+      quantity: 1,
+    }));
+  };
   // Hàm tính discount
   const calculateDiscount = (price, currentPrice) => {
     const priceNum = parseFloat(price) || 0;
@@ -15,14 +28,7 @@ const FoodList = ({ foods }) => {
 
   return (
     <Container className="my-3">
-      <div className="mb-4">
-        <Link to="/add" className="btn btn-success me-2">
-          Thêm món ăn
-        </Link>
-        <Link to="/delete" className="btn btn-danger">
-          Xóa món ăn
-        </Link>
-      </div>
+      
 
       <h2 className="text-primary">Danh sách món ăn</h2>
 
@@ -57,13 +63,22 @@ const FoodList = ({ foods }) => {
                     </span>
                   </div>
                 </Card.Text>
-                <Link
-                  to={`/food/${food.id}`}
-                  className="btn btn-primary w-100"
-                  style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
-                >
-                  Xem chi tiết
-                </Link>
+                <div className="d-flex flex-column gap-2">
+                  <Link
+                    to={`/food/${food.id}`}
+                    className="btn btn-primary w-100"
+                    style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+                  >
+                    Xem chi tiết
+                  </Link>
+                  <Button
+                    variant="warning"
+                    className="w-100"
+                    onClick={() => handleAddToCart(food)}
+                  >
+                    Thêm vào giỏ
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container, Alert, Spinner, Button } from 'react-bootstrap';
-import Navbar from './components/Navbar';
 import FoodList from './components/FoodList';
 import FoodDetail from './components/FoodDetail';
 import AddFood from './components/AddFood';
 import EditFood from './components/EditFood';
 import DeleteFoodList from './components/DeleteFoodList';
-import Login from './components/Login'; // Import Login
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts, addProduct, deleteProduct, updateProduct } from './redux/productSlice';
+import Cart from './components/Cart';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,22 +62,25 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
-      <Container>
-        {error && (
-          <Alert variant="danger" className="mt-3" dismissible>
-            {error} <Button variant="outline-danger" size="sm">Đóng</Button>
-          </Alert>
-        )}
-        <Routes>
-          <Route path="/" element={<FoodList foods={foods} />} />
-          <Route path="/food/:id" element={<FoodDetail foods={foods} onDeleteFood={handleDeleteFood} />} />
-          <Route path="/add" element={<AddFood onAddFood={handleAddFood} />} />
-          <Route path="/edit/:id" element={<EditFood foods={foods} onUpdateFood={handleUpdateFood} />} />
-          <Route path="/delete" element={<DeleteFoodList foods={foods} onDeleteFood={handleDeleteFood} />} />
-          <Route path="/login" element={<Login />} /> {/* Sử dụng component Login */}
-        </Routes>
-      </Container>
+      <div className="min-vh-100 d-flex flex-column">
+        <Navbar />
+        <Container className="flex-grow-1">
+          {error && (
+            <Alert variant="danger" className="mt-3" dismissible>
+              {error} <Button variant="outline-danger" size="sm">Đóng</Button>
+            </Alert>
+          )}
+          <Routes>
+            <Route path="/" element={<FoodList foods={foods} />} />
+            <Route path="/food/:id" element={<FoodDetail foods={foods} onDeleteFood={handleDeleteFood} />} />
+            <Route path="/add" element={<AddFood onAddFood={handleAddFood} />} />
+            <Route path="/edit/:id" element={<EditFood foods={foods} onUpdateFood={handleUpdateFood} />} />
+            <Route path="/delete" element={<DeleteFoodList foods={foods} onDeleteFood={handleDeleteFood} />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </Container>
+        <Footer />
+      </div>
     </Router>
   );
 }

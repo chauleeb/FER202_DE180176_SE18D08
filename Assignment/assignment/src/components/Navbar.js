@@ -1,43 +1,46 @@
 import React from 'react';
-import { Navbar as BootstrapNavbar, Nav, Container, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { logout } from '../redux/authSlice';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Navbar = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/');
-  };
+const CustomNavbar = () => {
+  const location = useLocation();
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <BootstrapNavbar bg="dark" variant="dark" expand="lg" className="mb-4">
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="mb-4">
       <Container>
-        <BootstrapNavbar.Brand as={Link} to="/">Food App</BootstrapNavbar.Brand>
-        <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
-        <BootstrapNavbar.Collapse id="basic-navbar-nav">
+        <Navbar.Brand as={Link} to="/">
+          🍽️ Food Paradise
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Trang chủ</Nav.Link>
-            <Nav.Link as={Link} to="/add">Thêm món</Nav.Link>
+            <Nav.Link as={Link} to="/" className={location.pathname === '/' ? 'active' : ''}>
+              Menu
+            </Nav.Link>
+            <Nav.Link as={Link} to="/add" className={location.pathname === '/add' ? 'active' : ''}>
+              Thêm món
+            </Nav.Link>
+            <Nav.Link as={Link} to="/delete" className={location.pathname === '/delete' ? 'active' : ''}>
+              Quản lý
+            </Nav.Link>
           </Nav>
           <Nav>
-            {isAuthenticated ? (
-              <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
-            ) : (
-              <>
-                <Button variant="outline-light" as={Link} to="/login" className="me-2">Login</Button>
-                <Button variant="outline-light" as={Link} to="/register">Register</Button>
-              </>
-            )}
+            <Nav.Link as={Link} to="/cart" className={`${location.pathname === '/cart' ? 'active' : ''} position-relative`}>
+              🛒 Giỏ hàng
+              {totalItems > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {totalItems}
+                </span>
+              )}
+            </Nav.Link>
           </Nav>
-        </BootstrapNavbar.Collapse>
+        </Navbar.Collapse>
       </Container>
-    </BootstrapNavbar>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;
